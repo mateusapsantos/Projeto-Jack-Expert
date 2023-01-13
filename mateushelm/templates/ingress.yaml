@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: { { .Values.ingress.name } }
+  namespace: { { .Values.namespace.name } }
+
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: mateus-v3.stag.jac.bsb.br
+      http:
+        paths:
+          - backend:
+              service:
+                name: teste-mateus-v3
+                port:
+                  number: 80
+            path: /
+            pathType: Prefix
